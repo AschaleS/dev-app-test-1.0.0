@@ -9,3 +9,18 @@
 
     (The $nav array variable is already available in this space via the view.)
 //-->
+
+<?php
+    /*function takes in a nav array and returns HREF attribute like: <a href="/new-orders">New Orders</a>
+    */
+    function generateNavLinks($nav){
+        for($i=0; $i<count($nav);$i++){
+            $content = $nav[$i];
+            $url = strtolower($content);
+            $url = str_replace(" ", "-", $url);
+            echo ("<a href=".$url.">$content</a>");
+            echo "<br>";
+        }
+    }
+    generateNavLinks($nav);
+?>
