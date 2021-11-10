@@ -84,6 +84,21 @@ class IndexController extends AbstractController
          * Display that user's information in the view however you see fit. Consider what to display
          * in the view if the ID passed does not return a user.
          */
+        
+        $userModel = new Model\User(); // this creates a new nuer Model
+        $user = $userModel->getById($id); // this gets the user by its id
+
+        // if no user found it updates the view as No User Found and if a user is found it displays the user information in the view
+         if(count($user) === 0){
+             $view->title = 'No User Found';
+         }else{
+             $username = $user['username'];
+             $email = $user['email'];
+             $view->title = $username;
+             $view->id = $id;
+             $view->username = $username;
+             $view->email= $email;
+         }
 
         $this->response->setBody($view->render());
         $this->response->send();
